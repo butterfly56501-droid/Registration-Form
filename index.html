@@ -1,0 +1,139 @@
+!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: lightblue;
+            display: flex;
+            justify-content: center;
+            padding: 30px;
+        }<
+
+        .container {
+            background: white;
+            padding: 25px;
+            width: 350px;
+            border-radius: 12px;
+        }
+
+        h2 {
+            text-align: center;
+            color: blue;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkblue;
+        }
+
+        #result {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Student Registration</h2>
+
+    <input type="text" id="name"
+    placeholder="Enter Your Name">
+
+    <input type="email" id="email"
+    placeholder="Enter Your Email">
+
+    <input type="text" id="phone"
+    placeholder="Enter Phone Number">
+
+    <input type="password" id="password"
+    placeholder="Create Password">
+
+    <input type="password" id="confirm"
+    placeholder="Confirm Password">
+
+    <select id="course">
+        <option value="">Select Course</option>
+        <option value="BCA">BCA</option>
+        <option value="B.Sc CS">B.Sc CS</option>
+        <option value="B.Tech">B.Tech</option>
+        <option value="B.Com">B.Com</option>
+    </select>
+
+    <button onclick="register()">Register</button>
+
+    <h4 id="result"></h4>
+
+</div>
+
+<script>
+
+function register() {
+
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
+    var password = document.getElementById("password").value;
+    var confirm = document.getElementById("confirm").value;
+    var course = document.getElementById("course").value;
+
+    var result = document.getElementById("result");
+
+    if (name == "" || email == "" || phone == "" ||
+        password == "" || confirm == "" || course == "") {
+
+        result.style.color = "red";
+        result.innerHTML = "Please fill all details!";
+    }
+
+    else if (!/^\d{10}$/.test(phone)) {
+
+        result.style.color = "red";
+        result.innerHTML = "Enter a valid 10-digit phone number!";
+    }
+
+    else if (password.length < 6) {
+
+        result.style.color = "red";
+        result.innerHTML = "Password must have 6 characters!";
+    }
+
+    else if (password != confirm) {
+
+        result.style.color = "red";
+        result.innerHTML = "Password does not match!";
+    }
+
+    else {
+
+        result.style.color = "green";
+        result.innerHTML = "Registration Successful! Welcome " + name;
+    }
+}
+
+</script>
+
+</body>
+</html>
